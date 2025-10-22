@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Swift Shift{% endblock %}</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    .custom-gap {
+      gap: 20px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+    .login-button,.signup-button{
+      color:black;
+      background-color: #ff7f1c;
+    }
+  </style>
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+  {% block header %}
+  <header class="p-4 text-bg-dark">
+    <div class="container">
+      <div class="d-flex custom-gap flex-wrap align-items-start justify-content-lg-start mb-1">
+        <a href="/" class="d-flex align-items-center text-light text-decoration-none fs-3 mb-1 me-1">
+          <i class="bi bi-box display-6 me-3"></i>
+          <b>SwiftShift</b>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Home</a></li>
+          <li><a href="{% url 'Services' %}" class="nav-link px-2 text-white">Services</a></li>
+          <li><a href="{% url 'aboutus' %}" class="nav-link px-2 text-white">About us</a></li>
+          <li><a href="{% url 'Contactus' %}" class="nav-link px-2 text-white">Contact us</a></li>
+        </ul>
+
+        <div class="text-end">
+          <a href="{% url 'login' %}"><button type="button" class="btn btn-warning login-button">Login</button></a>
+          <a href="{% url 'signup' %}"><button type="button" class="btn btn-warning signup-button">Sign-up</button></a>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% endblock %}
+
+  {% block content %}
+  <!-- Default index.html content -->
+  <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-4 fw-bold text-body-emphasis" style="padding-top: 80px;">Move With Joy</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+        Welcome to our website, where we are on a mission to provide exceptional moving services to customers in India.
+        As a startup, we believe that moving doesn't have to be stressful or complicated, and we are passionate about
+        making the process as seamless and enjoyable as possible.
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <a href="{% url 'Services' %}"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Services</button></a>
+        <a href="{% url 'Contactus' %}"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Contact Us</button></a>
+      </div>
+    </div>
+
+    <div class="overflow-hidden" style="max-height: 30vh;">
+      <div class="container px-5">
+        <img src="{% static 'images/moving-van.jpg' %}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Moving Van" width="700" height="500" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="container px-4 py-5" id="featured-3">
+    <h2 class="pb-2 border-bottom">Why Move With Us?</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <i class="bi bi-briefcase feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-1 mb-3" style="padding: 10px;"></i>
+        <h3 class="fs-2 text-body-emphasis">Professional</h3>
+        <p>Our team of professional movers are trained to prioritize efficiency, organization, and attention to detail.
+          We understand that your possessions are more than just objects — they are a reflection of your life,
+          memories, and experiences.</p>
+      </div>
+
+      <div class="feature col">
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+          <i class="bi bi-truck" style="padding: 15px;"></i>
+        </div>
+        <h3 class="fs-2 text-body-emphasis">DistrictWide</h3>
+        <p>We offer services for local and cross-country moves, from packing to unpacking, with transparent pricing.</p>
+      </div>
+
+      <div class="feature col">
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+          <i class="bi bi-chat-square-heart" style="padding: 16px;"></i>
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Personal Touch</h3>
+        <p>We aim to make moving an exciting and positive experience with a personalized touch for each customer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/family.jpg' %}" class="d-block w-100" alt="Family">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/dog.jpg' %}" class="d-block w-100" alt="Dog">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/couple.jpg' %}" class="d-block w-100" alt="Couple">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block footer %}
+  <div class="container">
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-body-secondary">Home</a></li>
+        <li class="nav-item"><a href="{% url 'Services' %}" class="nav-link px-2 text-body-secondary">Services</a></li>
+        <li class="nav-item"><a href="{% url 'aboutus' %}" class="nav-link px-2 text-body-secondary">About Us</a></li>
+        <li class="nav-item"><a href="{% url 'Contactus' %}" class="nav-link px-2 text-body-secondary">Contact Us</a></li>
+      </ul>
+      <p class="text-center text-body-secondary">© Swift Shift</p>
+    </footer>
+  </div>
+  {% endblock %}
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+</html>

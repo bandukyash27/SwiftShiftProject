@@ -5,3 +5,5 @@ from app.models import *
 
 
 admin.site.register(ContactDetails)
+admin.site.register(Service)
+admin.site.register(Booking)

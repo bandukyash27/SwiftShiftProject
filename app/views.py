@@ -6,13 +6,39 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.urls import reverse
 # Create your views here.
-
+from django.utils import timezone
 def index(request):
-    return render(request,'index.html')
+    return render(request,'base.html')
 
 def Services(request):
-    return render(request,'Services.html')
+    services = Service.objects.all()
+    return render(request, "Services.html", {"services": services})
 
+
+
+
+
+def book_service(request, service_id):
+    service =Service.objects.get(id=service_id)
+    print("Service:--",service)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        details = request.POST.get('details')
+
+        Booking.objects.create(
+                    service=service,
+                    name=name,
+                    email=email,
+                    phone=phone,
+                    details=details,
+                    booking_datetime=timezone.now()  # set current date & time
+                )
+       
+        return redirect('/Services/?success=1')
+    return redirect('Services')
+    
 def LocalMoving(request):
     return render(request,'LocalMoving.html')
 
@@ -75,12 +101,17 @@ def signup(request):
         return render(request, 'signup.html')
 
 def Contactus(request):
-    if request.method=='POST':
-        na=request.POST['name']
-        mobile=request.POST['mobile']
-        email=request.POST['email']
-        message=request.POST['message']
-        LCO=ContactDetails.objects.get_or_create(name=na,mobileno=mobile,email=email,message=message)
-        messages.success(request,"Your message is submitted")
-    return render(request,'Contactus.html')
+    if request.method == 'POST':
+        na = request.POST['name']
+        mobile = request.POST['mobile']
+        email = request.POST['email']
+        message = request.POST['message']
+        ContactDetails.objects.get_or_create(
+            name=na,
+            mobileno=mobile,
+            email=email,
+            message=message
+        )
+        return JsonResponse({"status": "success", "message": "Your message is submitted"})
+    return render(request, 'Contactus.html')
         
