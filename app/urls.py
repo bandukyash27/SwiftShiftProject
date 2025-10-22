@@ -6,6 +6,8 @@ urlpatterns=[
     path('accounts/',include('django.contrib.auth.urls')),
     path('',views.index,name='index'),
     path('Services/',views.Services,name='Services'),
+    path('book/<int:service_id>/', views.book_service, name='book_service'),
+
     path('Contactus/',views.Contactus,name='Contactus'),
     path('LocalMoving/',views.LocalMoving,name='LocalMoving'),
     path('Longdistance/',views.Longdistance,name='Longdistance'),

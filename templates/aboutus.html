@@ -1,289 +1,183 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About us</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  
-    <style>
-        .custom-gap{
-        gap:20px;
-      }
-      header{
-        margin-bottom: 500px;
-        position:fixed;
-        top:0;
-        left:0;
-        z-index: 1000;
-        width: 100%;
-        
-      }
-      .footer{
-        margin-top: 150px;
-      } 
+{% block title %}About Us - SwiftShift{% endblock %}
 
-      
-      body{
-        background: url("{% static 'images/backgroundlm.png'%}") no-repeat center;
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+    body {
+        background: url("{% static 'images/backgroundlm.png' %}") no-repeat center center;
         background-size: cover;
-        height:100%;
-        width: 100%;
-        position: relative;
-      }
-      .features{
-        display: grid;
-            grid-template-columns: repeat(3,1fr);
-            grid-template-rows: repeat(2,auto);
-            gap: 20px;
-            grid-auto-rows: auto;
-            justify-content: space-between;
-            padding: 10px;
-      }
-      .services{
-        display: grid;
-        grid-template-rows: repeat(3,1fr);
-        grid-template-columns: repeat(2,1fr);
-        gap:20px;
-        justify-content: center;
-        padding: 30px;
-      }
-      .sbox{
-        background-color: white;
+    }
+    .feature-box, .sbox {
+        background: white;
+        padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
         transition: transform 0.3s ease-in-out;
-      }
-      .sbox:hover{
+    }
+    .feature-box:hover, .sbox:hover {
         transform: translateY(-7px);
-      }
-      .services-icon
-      {
+    }
+    .feature-icon, .services-icon {
         font-size: 40px;
-            color: #ff6f00;
-            margin-bottom: 10px;
-      }
-      
-     
-      .feature-box {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-        .feature-box:hover {
-            transform: translateY(-7px);
-        }
-        .feature-icon {
-            font-size: 40px;
-            color: #ff6f00;
-            margin-bottom: 10px;
-        }
-        .feature-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-        }
-        .feature-text {
-            font-size: 16px;
-            color: #666;
-            margin-top: 5px;
-        }
-        @media (max-width: 768px) {
-            .features,.services{
-                grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .features,.services{
-                grid-template-columns: repeat(1, 1fr); /* 1 column for mobile */
-            }
-        }
-        .contact-details{
-        margin-top: 70px;
-        margin-left: 480px;
-        padding-left: 30px;
-        margin-right: 480px;
+        color: #ff6f00;
+        margin-bottom: 10px;
+    }
+    .contact-details {
+        margin: 70px auto;
+        padding: 30px;
         border: 2px solid white;
         border-radius: 30px;
-          
-        }
-        
-      
-      
-      
-    </style>
-</head>
-<body>
-    <header class="p-4 text-bg-dark">
-        <div class="container">
-          <div  class="d-flex custom-gap flex-wrap align-items-start  justify-content-lg-start mb-1 ">
-            <a href="/" class="d-flex align-items-center text-light text-decoration-none fs-3 mb-1 me-1">
-              <i class="bi bi-box display-6 me-3 "></i>
-              <br>
-              <b>SwiftShift</b> 
-            
-            </a>
-    
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Home</a></li>
-              <li><a href="{% url 'Services' %}" class="nav-link px-2 text-white">Services</a></li>
-              <li><a href="{% url 'aboutus' %}" class="nav-link px-2 text-white">About us</a></li>
-              <li><a href="{% url 'Contactus' %}" class="nav-link px-2 text-white">Contact us</a></li>
-            </ul>
-          </div>
+        max-width: 600px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container about col-xxl-8 px-4 py-5 mt-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="{% static 'images/moving_02.jpg' %}" class="img-fluid rounded" 
+                 alt="SwiftShift moving team assisting with relocation" loading="lazy">
         </div>
-      </header>
-
-
-      <div class="bod">
-        <div class="container about col-xxl-8 px-4 py-5" style="margin-top: 100px;">
-          <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-10 col-sm-8 col-lg-6">
-              <img src="{% static 'images/moving_02.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy" style="border-radius: 10px;">
-            </div>
-            <div class="col-lg-6">
-              <h1 class="display-5 fw-bold text-light lh-1 mb-3">Reliable & Hassle-Free Moving Services You Can Trust</h1>
-              <p class="lead text-light">Welcome to SwiftShift, your trusted partner in hassle-free relocation services. With years of experience in the industry, we specialize in providing efficient, reliable, and affordable moving solutions tailored to meet your needs.</p>
-              <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                
-              </div>
-            </div>
-          </div>
+        <div class="col-lg-6 text-light">
+            <h1 class="display-5 fw-bold lh-1 mb-3">Reliable & Hassle-Free Moving Services You Can Trust</h1>
+            <p class="lead">Welcome to SwiftShift, your trusted partner in hassle-free relocation services. With years of experience in the industry, we specialize in providing efficient, reliable, and affordable moving solutions tailored to meet your needs.</p>
         </div>
+    </div>
+</div>
 
-          <div class="chooseus text-light">
-              <div class="chhead" style="display: flex; justify-content: center; margin-bottom: 30px;"><h1>Why Choose us?</h1></div>
-              <div class="features">
-                <div class="feature-box text-dark">
-                    <div class="feature-icon"><i class="fa-solid fa-user-tie"></i></div>
-                    <div class="feature-title">Experienced Professionals</div>
-                    <div class="feature-text">Our skilled movers handle your belongings with care and efficiency.</div>
-                </div>
-                <div class="feature-box text-dark">
-                    <div class="feature-icon"><i class="fa-solid fa-shield"></i></div>
-                    <div class="feature-title">Safe & Secure Packing</div>
-                    <div class="feature-text">We use high-quality materials to ensure your items remain undamaged.</div>
-                </div>
-                <div class="feature-box text-dark">
-                    <div class="feature-icon"><i class="fa-solid fa-stopwatch"></i></div>
-                    <div class="feature-title">Timely Delivery</div>
-                    <div class="feature-text">We ensure prompt and on-time delivery at your desired location.</div>
-                </div>
-                <div class="feature-box text-dark">
-                    <div class="feature-icon"><i class="fa-solid fa-money-bill-1"></i></div>
-                    <div class="feature-title">Affordable Pricing</div>
-                    <div class="feature-text">Transparent pricing with no hidden costs. Get the best rates!</div>
-                </div>
-                <div class="feature-box text-dark">
-                    <div class="feature-icon"><i class="fa-solid fa-phone"></i></div>
-                    <div class="feature-title">24/7 Customer Support</div>
-                    <div class="feature-text">Our team is available anytime to assist you with your queries.</div>
-                </div>
-                <div class="feature-box text-dark">
-                  <div class="feature-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
-                  <div class="feature-title">Real-Time Tracking System</div>
-                  <div class="feature-text">With our advanced tracking system, you can monitor your move in real time.</div>
-              </div>
-                
+<div class="text-light text-center my-5">
+    <h1>Why Choose Us?</h1>
+</div>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+            <div class="feature-box text-dark text-center">
+                <div class="feature-icon"><i class="fa-solid fa-user-tie"></i></div>
+                <h5>Experienced Professionals</h5>
+                <p>Our skilled movers handle your belongings with care and efficiency.</p>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center; margin-top: 30px;margin-bottom: 30px;"><h1 class="text-light">Our Services</h1></div>
+        </div>
+        <div class="col">
+            <div class="feature-box text-dark text-center">
+                <div class="feature-icon"><i class="fa-solid fa-shield"></i></div>
+                <h5>Safe & Secure Packing</h5>
+                <p>We use high-quality materials to ensure your items remain undamaged.</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="feature-box text-dark text-center">
+                <div class="feature-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                <h5>Timely Delivery</h5>
+                <p>We ensure prompt and on-time delivery at your desired location.</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="feature-box text-dark text-center">
+                <div class="feature-icon"><i class="fa-solid fa-money-bill-1"></i></div>
+                <h5>Affordable Pricing</h5>
+                <p>Transparent pricing with no hidden costs. Get the best rates!</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="feature-box text-dark text-center">
+                <div class="feature-icon"><i class="fa-solid fa-phone"></i></div>
+                <h5>24/7 Customer Support</h5>
+                <p>Our team is available anytime to assist you with your queries.</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="feature-box text-dark text-center">
+                <div class="feature-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
+                <h5>Real-Time Tracking</h5>
+                <p>With our advanced tracking system, you can monitor your move in real time.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-          <div class="services">
-              
-            <div class="sbox">
-              <div class="services-icon"><i class="fa-solid fa-truck"></i></div>
-              <h2 class="fw-normal">Local Moving</h2>
-              <p>Efficient and affordable moving services within your city or surrounding areas.
-                Our experienced team handles all aspects of your move, from packing and loading to unloading and furniture assembly."
-              </p>
+<div class="text-light text-center my-5">
+    <h1>Our Services</h1>
+</div>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+            <div class="sbox text-center">
+                <div class="services-icon"><i class="fa-solid fa-truck"></i></div>
+                <h5>Local Moving</h5>
+                <p>Efficient and affordable moving services within your city or surrounding areas.</p>
             </div>
-            <div class="sbox">
-              <div class="services-icon"><i class="fa-solid fa-globe"></i></div>
-              <h2 class="fw-normal">Long-Distance Moving</h2>
-              <p>Seamless long-distance moves across states or even
-                internationally. We ensure your belongings arrive safely
-                  and on time, no matter the distance. Our services include door-to-door delivery and full insurance 
-                  coverage.</p>
+        </div>
+        <div class="col">
+            <div class="sbox text-center">
+                <div class="services-icon"><i class="fa-solid fa-globe"></i></div>
+                <h5>Long-Distance Moving</h5>
+                <p>Seamless long-distance moves with full insurance coverage.</p>
             </div>
-            <div class="sbox">
-              <div class="services-icon"><i class="fa-solid fa-building"></i></div>
-              <h2 class="fw-normal">Commercial Moving</h2>
-              <p>Specialized moving services for businesses of all sizes.
-                We understand the unique needs of office relocations and minimize disruption 
-                to your operations. Our team efficiently moves office 
-                furniture, equipment, and electronics</p>
+        </div>
+        <div class="col">
+            <div class="sbox text-center">
+                <div class="services-icon"><i class="fa-solid fa-building"></i></div>
+                <h5>Commercial Moving</h5>
+                <p>Specialized services for businesses with minimal disruption.</p>
             </div>
-            <div class="sbox">
-              <div class="services-icon"><i class="fa-solid fa-warehouse"></i></div>
-              <h2 class="fw-normal">Storage</h2>
-              <p>Secure and climate-controlled storage solutions for 
-                short-term or long-term needs. We offer flexible storage
-                options to accommodate various requirements, ensuring 
-                your belongings are safe and protected while in our care.</p>
+        </div>
+        <div class="col">
+            <div class="sbox text-center">
+                <div class="services-icon"><i class="fa-solid fa-warehouse"></i></div>
+                <h5>Storage</h5>
+                <p>Secure, climate-controlled storage for short or long term needs.</p>
             </div>
-            <div class="sbox">
-              <div class="services-icon"><i class="fa-solid fa-boxes-packing"></i></div>
-              <h2 class="fw-normal">Packing/Unpacking</h2>
-              <p>Professional packing services by our trained experts.
-                We use high-quality packing materials to safeguard your valuables.
-                  Unpacking services are also available to help you settle into
-                  your new home quickly and efficiently.</p>
+        </div>
+        <div class="col">
+            <div class="sbox text-center">
+                <div class="services-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+                <h5>Packing/Unpacking</h5>
+                <p>Professional packing and unpacking for a stress-free move.</p>
             </div>
-            <div class="sbox">
-              <div class="services-icon"><i class="fa-solid fa-shield-dog"></i></div>
-              <h2 class="fw-normal">Pet Relocation</h2>
-              <p>Stress-free pet relocation services to ensure your 
-                furry friends travel comfortably and safely. We provide specialized transportation
-                and care for pets, making the moving 
-                experience enjoyable for both you and your pets.</p>
+        </div>
+        <div class="col">
+            <div class="sbox text-center">
+                <div class="services-icon"><i class="fa-solid fa-shield-dog"></i></div>
+                <h5>Pet Relocation</h5>
+                <p>Comfortable, safe transport for your furry friends.</p>
             </div>
+        </div>
+    </div>
+</div>
 
-          </div>
+<div class="contact-details text-light text-center">
+    <h2><i class="bi bi-geo-alt-fill me-2"></i>Contact Us</h2>
+    <p>Bangalore, Karnataka</p>
 
-          <div class="contact-details text-light">
-              <div class="details" style="padding: 30px; margin: 0px;">
+    <h2 class="mt-4"><i class="bi bi-clock-fill me-2"></i>Office Hours</h2>
+    <p>Everyday 9:00 AM to 3:00 PM</p>
 
-                  <h1 class="fs-1"><i class="bi bi-geo-alt-fill" style="margin-right: 10px;"></i>Contact with us</h1>
-                    <h3 class="ms-5 fs-5 ">Banglore,Karnataka</h3>
-            
-                  <h1 class="fs-1" style="margin-top: 35px;"><i class="bi bi-clock-fill fs-3" style="margin-right: 10px;"></i>Office Opening hour</h1>
-                    <h3 class="ms-5 fs-5">Everyday 9:00 AM  to 3:00 PM</h3>
-            
-                  <h1 class="fs-1" style="margin-top: 35px;"><i class="bi bi-telephone-fill" style="margin-right: 10px;"></i>Call us</h1>
-                  <h3 class="ms-5 fs-5">Mobile: +91 9392958221</h3>
-            
-            
-                  <h1 class="fs-1" style="margin-top: 35px;"><i class="bi bi-envelope-fill" style="margin-right: 13px;"></i>Email us</h1>
-                  <h3 class="ms-5 fs-5">Email: yashnani2703@gmail.com</h3>
-              </div>
-            
-      
-          </div>
-        
-      </div>
+    <h2 class="mt-4"><i class="bi bi-telephone-fill me-2"></i>Call Us</h2>
+    <p>+91 9392958221</p>
 
+    <h2 class="mt-4"><i class="bi bi-envelope-fill me-2"></i>Email Us</h2>
+    <p>yashnani2703@gmail.com</p>
+</div>
+{% endblock %}
 
-      <div class="footer">
-        <footer class="py-3 my-4">
-          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-light">Home</a></li>
-            <li class="nav-item"><a href="{% url 'Services' %}" class="nav-link px-2 text-light">Services</a></li>
-            <li class="nav-item"><a href="{% url 'aboutus' %}" class="nav-link px-2 text-light">About Us</a></li>
-            <li class="nav-item"><a href="{% url 'Contactus' %}" class="nav-link px-2 text-light">Contact Us</a></li>
-          </ul>
-          <p class="text-center text-light">©Swift Shift </p>
-        </footer>
-      </div>
-</body>
-</html>
+{% block footer %}
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-top border-light pt-3 mb-3">
+            <li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-white">Home</a></li>
+            <li class="nav-item"><a href="{% url 'Services' %}" class="nav-link px-2 text-white">Services</a></li>
+            <li class="nav-item"><a href="{% url 'aboutus' %}" class="nav-link px-2 text-white">About Us</a></li>
+            <li class="nav-item"><a href="{% url 'Contactus' %}" class="nav-link px-2 text-white">Contact Us</a></li>
+        </ul>
+        <p class="text-center text-white">© SwiftShift</p>
+    </footer>
+</div>
+{% endblock %}
